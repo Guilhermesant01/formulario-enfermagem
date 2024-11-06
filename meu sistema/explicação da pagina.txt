@@ -1,0 +1,139 @@
+Estrutura do HTML
+Definição do Documento
+
+html
+Copiar código
+<!DOCTYPE html>
+<html lang="pt-BR">
+A primeira linha define que o documento é do tipo HTML.
+O atributo lang="pt-BR" indica que o idioma da página é o português do Brasil.
+Cabeçalho (Head)
+
+html
+Copiar código
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificação de Cadastro</title>
+    <fieldset>
+        <style>
+            /* Aqui estão os estilos da página */
+        </style>
+    </fieldset>
+</head>
+A tag <meta charset="UTF-8"> define a codificação de caracteres para UTF-8 (isso é importante para garantir que os caracteres especiais, como acentos, sejam corretamente exibidos).
+A tag <meta name="viewport"> ajusta a visualização para que a página seja responsiva (funcione bem em dispositivos móveis).
+O título da página, que aparece na aba do navegador, é "Verificação de Cadastro".
+Dentro da tag <style>, temos as regras CSS que definem a aparência da página (como a cor de fundo e fontes).
+Corpo da Página (Body)
+Dentro da tag <body>, temos o conteúdo visível da página. Vamos analisar a estrutura:
+
+Imagem de Cabeçalho
+
+html
+Copiar código
+<center><br><br><br><br>
+    <img src="img/Resultados (2).png" alt="primeira imagem">
+    <h2 style="color: aliceblue;"></h2><br><br>
+</center>
+A tag <center> centraliza o conteúdo.
+Exibe uma imagem (img/Resultados (2).png).
+Um <h2> vazio (sem conteúdo), mas com cor de texto definida como aliceblue.
+Formulário Aqui estão os campos onde o usuário pode inserir seus dados:
+
+html
+Copiar código
+<label for="nome" style="color: white;">Nome: </label>
+<input id="nome" style="background-color: white; color: black;">
+<br><br>
+<label for="idade" style="color: white;">Idade: </label>
+<input id="idade" style="background-color: white; color: black;">
+<br><br>
+<label for="cpf" style="color: white;">CPF: </label>
+<input id="cpf" style="background-color: white; color: black;">
+<br><br>
+<label for="sintomas" style="color: white;">Sintomas: </label>
+<input id="sintomas" style="background-color: white; color: black;">
+<br><br>
+<button onclick="verificarCadastro()">Verificar</button><br><br><br><br>
+Para cada dado que o usuário deve preencher (nome, idade, CPF e sintomas), há um <label> que descreve o campo, seguido de um <input> para o preenchimento.
+A cor de fundo dos campos de entrada foi definida para branco, e o texto é preto.
+O botão com o texto "Verificar" chama a função JavaScript verificarCadastro() quando clicado.
+Imagem de Resultados Após o formulário, há outra imagem:
+
+html
+Copiar código
+<img src="img/Resultados 32.png" alt="segunda imagem">
+Área para Exibir Resultados
+
+html
+Copiar código
+<div id="resultados"></div>
+Este é um espaço onde os resultados da verificação (se os dados estão corretos ou não) serão exibidos.
+Código JavaScript
+Dentro da tag <script>, temos a função que será executada quando o usuário clicar no botão "Verificar". Essa função verifica se os dados inseridos são válidos. Vamos analisar o que acontece dentro da função verificarCadastro():
+
+Limpar Resultados Anteriores
+
+javascript
+Copiar código
+const resultadosDiv = document.getElementById('resultados');
+resultadosDiv.innerHTML = '';
+Primeiro, ele limpa qualquer conteúdo anterior na área de resultados.
+Obter Dados do Formulário
+
+javascript
+Copiar código
+const nome = document.getElementById('nome').value;
+const idade = document.getElementById('idade').value;
+const cpf = document.getElementById('cpf').value;
+const sintomas = document.getElementById('sintomas').value;
+Aqui, ele pega os valores preenchidos nos campos do formulário.
+Validação do Nome
+
+javascript
+Copiar código
+if (nome.length >= 3) {
+    resultadosDiv.innerHTML += '<p class="pass">✔️ Nome válido</p>';
+} else {
+    resultadosDiv.innerHTML += '<p class="fail">❌ Nome inválido (mínimo 3 letras)</p>';
+}
+O nome precisa ter pelo menos 3 caracteres. Se for válido, uma mensagem verde (classe pass) é exibida; caso contrário, uma mensagem vermelha (classe fail) é exibida.
+Validação da Idade
+
+javascript
+Copiar código
+if (idade >= 18 && idade <= 120) {
+    resultadosDiv.innerHTML += '<p class="pass">✔️ Idade válida</p>';
+} else {
+    resultadosDiv.innerHTML += '<p class="fail">❌ Idade inválida (deve ser entre 18 e 120 anos)</p>';
+}
+A idade deve estar entre 18 e 120 anos. Mensagem verde ou vermelha dependendo da validação.
+Validação do CPF
+
+javascript
+Copiar código
+if (cpf.length >= 11 && cpf.length <= 11) {
+    resultadosDiv.innerHTML += '<p class="pass">✔️ CPF válido</p>';
+} else {
+    resultadosDiv.innerHTML += '<p class="fail">❌ CPF inválido (deve ter pelo menos 11 números)</p>';
+}
+O CPF deve ter exatamente 11 dígitos. Se for válido, mensagem verde; se não, vermelha.
+Validação dos Sintomas
+
+javascript
+Copiar código
+if (sintomas.length >= 5 && sintomas.length <= 100) {
+    resultadosDiv.innerHTML += '<p class="pass">✔️ sintomas válidos</p>';
+} else {
+    resultadosDiv.innerHTML += '<p class="fail">❌ sintomas inválidos (deve ter pelo menos 5 caracteres até 100)</p>';
+}
+Os sintomas devem ter entre 5 e 100 caracteres. Mensagens de acordo com a validação.
+Estilos CSS
+Dentro da tag <style>, temos regras CSS para modificar o layout da página:
+
+Cor de fundo da página: A página tem uma imagem de fundo e também uma cor de fundo escura (#333).
+Cores de texto: As classes .pass e .fail definem a cor das mensagens (verde para válido e vermelho para inválido).
+Estilo de campos de entrada: Campos de input têm fundo branco e texto preto.
+Conclusão
+Este código cria uma página web interativa onde o usuário pode preencher um formulário com seus dados pessoais. O JavaScript valida esses dados e exibe mensagens de sucesso ou erro dependendo da verificação de cada campo.

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificação de Cadastro</title>
+    <fieldset>
+        <style>
+            .pass {
+                color: green;
+            }
+
+            .fail {
+                color: red;
+            }
+
+            #sintomas {
+                height: 80px;
+                width: 550px;
+            }
+           
+
+
+            body {
+                background-image: url('img/Site\ para\ Link\ na\ Bio\ Tecnologia\ e\ Jogos\ Escuro\ Simples\ Azul-escuro.png');
+                /* Substitua pelo caminho da sua imagem */
+                background-repeat: no-repeat;
+                background-size: cover;
+                /* Para cobrir toda a tela */
+                background-position: center;
+                /* Para centralizar a imagem */
+            }
+
+            .h2 {
+                border: white;
+            }
+        </style>
+</head>
+
+
+<body style="background-color: #333; color: white;">
+
+    <!--aqui colocas tudo ao centro e adicionada a primeira img-->
+    <center><br><br><br><br>
+        <img src="img/Resultados (2).png" alt="primeira imagem">
+        <h2 style="color: aliceblue;"></h2><br><br>
+
+        <!-- Formulário para entrada de dados -->
+        <!--está sendo usada para mudar cor das palavras : nome , idade , cpf , sintomas-->
+        <label for="nome" style="color: white;">Nome: </label><input id="nome" style="background-color: white; color: black;"><br><br>
+        <label for="idade" style="color: white;">Idade: </label><input id="idade" style="background-color: white; color: black;"><br><br>
+        <label for="cpf" style="color: white;">CPF: </label><input id="cpf" style="background-color: white; color: black;"><br><br>
+        <label for="sintomas" style="color: white;">Sintomas: </label><input id="sintomas" style="background-color: white; color: black;"><br><br>
+        <button onclick="verificarCadastro()">Verificar</button><br><br><br><br>
+
+        <!--há um <label> que descreve o campo, seguido de um <input> para o preenchimento.
+        A cor de fundo dos campos de entrada foi definida para branco, e o texto é preto.
+        O botão com o texto "Verificar" chama a função JavaScript verificarCadastro() quando clicado.-->
+
+        <!--segunda img-->
+        <img src="img/Resultados 32.png" alt="segunda imagem">
+        
+        <!--Este é um espaço onde os resultados da verificação (se os dados estão corretos ou não) serão exibidos.-->
+        <div id="resultados"></div>
+
+
+        <script>
+            //Dentro da tag <script>, temos a função que será executada quando o usuário clicar no botão "Verificar". Essa função verifica se os dados inseridos são válidos. Vamos analisar o que acontece dentro da função verificarCadastro():
+
+            // Função para verificar nome,idade,cpf,sintomas.
+            function verificarCadastro() {
+                // Limpar resultados anteriores
+                const resultadosDiv = document.getElementById('resultados');
+                resultadosDiv.innerHTML = '';
+
+                // ele pega os valores preenchidos nos campos do formulário.
+                const nome = document.getElementById('nome').value;
+                const idade = document.getElementById('idade').value;
+                const cpf = document.getElementById('cpf').value;
+                const sintomas = document.getElementById('sintomas').value;
+
+                // Validar nome (deve ter pelo menos 3 letras)
+                if (nome.length >= 3) {
+                    resultadosDiv.innerHTML += '<p class="pass">✔️ Nome válido</p>';
+                } else {
+                    resultadosDiv.innerHTML += '<p class="fail">❌ Nome inválido (mínimo 3 letras)</p>';
+                }
+
+                // Validar idade (deve estar entre 18 e 120 anos)
+                if (idade >= 18 && idade <= 120) {
+                    resultadosDiv.innerHTML += '<p class="pass">✔️ Idade válida</p>';
+                } else {
+                    resultadosDiv.innerHTML += '<p class="fail">❌ Idade inválida (deve ser entre 18 e 120 anos)</p>';
+                }
+
+                // Validar CPF deve ter (11 digitos)
+                if (cpf.length >= 11 && cpf.length <= 11) {
+                    resultadosDiv.innerHTML += '<p class="pass">✔️ CPF válido</p>';
+                } else {
+                    resultadosDiv.innerHTML += '<p class="fail">❌ CPF inválido (deve ter pelo menos 11 números)</p>';
+                }
+
+                // o paciente deve digitar os sisntomas
+                if (sintomas.length >= 5 && sintomas.length <= 100) {
+                    resultadosDiv.innerHTML += '<p class="pass">✔️ sintomas válidos</p>';
+                } else {
+                    resultadosDiv.innerHTML += '<p class="fail">❌ sintomas inválidos (deve ter pelo menos 5 caracteres ate 100)</p>';
+                }
+            }
+            //O JavaScript valida esses dados e exibe mensagens de sucesso ou erro dependendo da verificação de cada campo.
+        </script>
+        
+</body>
+</fieldset>
+</html>
